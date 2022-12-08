@@ -1,51 +1,12 @@
-# Jetson-nano-Servomotor on Docker-compose
+# jetson nano サーボモーターサンプルプログラム
 
-# Index
-
-- [1. Introduction](#1-introduction)
-- [2. Updates!!](#2-updates)
-- [3. Coming soon](#3-coming-soon)
-- [4. Quick Start](#4-quick-start)
-- [5. サーボモーターサンプルプログラム](#5-サーボモーターサンプルプログラム)
-  - [5.1. 初期化](#51-初期化)
-  - [5.2. 動作確認](#52-動作確認)
-    - [5.2.1. デバイスの確認．](#521-デバイスの確認)
-    - [5.2.2. サンプルプログラム](#522-サンプルプログラム)
-- [6. Reference site](#6-reference-site)
-- [7. Memo](#7-memo)
-
-## 1. Introduction
+## はじめに
 
 `jetson`でサーボモーターのようなハードが関わっているようなプログラムを動作させようとすると環境構築が毎回大変です．
 
 そこで，`docker-compose`でワンパンで構築できるようにしました．
 
-
-## 2. Updates!!
-* 【2022/12/09】README, サンプルプログラムを追加
-
-## 3. Coming soon
-- [ ] 現状特になし
-
-## 4. Quick Start
-
-`docker-compose`を起動します．
-
-```bash
-sudo docker-compose up -d
-```
-
-## 5. サーボモーターサンプルプログラム
-
-下記のNOTEBOOKを利用して動かすことができます．
-
-[notebook/Sample_servomotor.ipynb](notebook/Sample_servomotor.ipynb)
-
-
-下記のリンクから`notebook`にアクセスします．
->http://maki-jetson2:8888/
-
-### 5.1. 初期化
+## 初期化
 
 Docker 内で作られたファイルは`root`権限になってしまう．そうすると`VSCode`で編集できないため，ここで権限を緩める．
 
@@ -60,9 +21,9 @@ Docker 内で作られたファイルは`root`権限になってしまう．そ�
 ```python
 %cd /home/jetson-nano-servomotor
 ```
-```bash
+
     /home/jetson-nano-servomotor
-```
+
 
 現在位置の確認
 
@@ -70,13 +31,13 @@ Docker 内で作られたファイルは`root`権限になってしまう．そ�
 ```python
 !pwd
 ```
-```bash
+
     /home/jetson-nano-servomotor
-```
 
-### 5.2. 動作確認
 
-#### 5.2.1. デバイスの確認．
+## 動作確認
+
+### デバイスの確認．
 
 ここで`i2c`関係のものが無ければマウントする必要がある．
 
@@ -84,7 +45,7 @@ Docker 内で作られたファイルは`root`権限になってしまう．そ�
 ```python
 !ls /dev
 ```
-```bash
+
     autofs			mtd0ro		    ram10	       tty17  ttyGS0
     bsg			mtdblock0	    ram11	       tty18  ttyS0
     btrfs-control		net		    ram12	       tty19  ttyS1
@@ -140,7 +101,7 @@ Docker 内で作られたファイルは`root`権限になってしまう．そ�
     min_online_cpus		quadd_auth	    tty14	       tty7
     mqueue			ram0		    tty15	       tty8
     mtd0			ram1		    tty16	       tty9
-```
+
 
 `i2c`の確認．
 
@@ -162,7 +123,7 @@ Docker 内で作られたファイルは`root`権限になってしまう．そ�
 ```python
 !i2cdetect -y -r 1
 ```
-```bash
+
          0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
     00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
     10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
@@ -172,9 +133,9 @@ Docker 内で作られたファイルは`root`権限になってしまう．そ�
     50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
     60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
     70: 70 -- -- -- -- -- -- --                         
-```
 
-#### 5.2.2. サンプルプログラム
+
+### サンプルプログラム
 
 こちらを実行すると動作するはず．
 
@@ -235,18 +196,24 @@ while True:
     time.sleep(1)
 ```
 
-
-
-## 6. Reference site
-
-- [Jetson Xavier NXでJetRacerを構築](https://qiita.com/akira-sasaki/items/015525fb3f0079b14dbf)
-- [JetPack Archive](https://developer.nvidia.com/embedded/jetpack-archive)
-- [DockerコンテナからRaspberryPiのGPIO・I2C・シリアル通信を使う](https://qiita.com/myasu/items/e3bf8641a9e94dd3e5dd)
-- 
+    Moving servo on channel 0, press Ctrl-C to quit...
 
 
 
-## 7. Memo
+    ---------------------------------------------------------------------------
 
-sudo service docker restart
+    KeyboardInterrupt                         Traceback (most recent call last)
 
+    <ipython-input-13-f0652d7d4e5a> in <module>
+         49     time.sleep(1)
+         50     pwm.set_pwm(i, 0, servo_max)
+    ---> 51     time.sleep(1)
+    
+
+    KeyboardInterrupt: 
+
+
+
+```python
+
+```
