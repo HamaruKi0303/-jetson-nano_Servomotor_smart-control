@@ -3,13 +3,23 @@ from datetime import datetime
 
 import pandas as pd
 import os
+import sys
 import pprint
 from loguru import logger
 from datetime import datetime as dt
 
+# --------------------------------------------
+# Servomotor
+#
+# add modules path
+sys.path.append('jetson-nano-Servomotor/modules')
+import ServoClass
+# make class
+Servo0 = ServoClass.ServoClass(Channel=0, ZeroOffset=0)
 
-
+# --------------------------------------------
 # Blueprint を作成
+# 
 bp = Blueprint('servomotor_smart_control', __name__)
 
 # /post にアクセスされ、GETもしくはPOSTメソッドでデータが送信された場合の処理
@@ -29,7 +39,16 @@ def servomotor_smart_control():
     #
     tdatetime = dt.now()
     tstr = tdatetime.strftime('%Y%m%d_%H%M%S')
-           
+        
+    # --------------------------------------------
+    # read data
+    #
+    is_file = os.path.isfile(data_path)
+    if(is_file):
+        df_form = pd.read_csv(data_path, index_col=0)
+    else:
+        df_form = pd.DataFrame({})
+        
     # --------------------------------------------
     # POSTメソッドの場合
     #
@@ -42,9 +61,7 @@ def servomotor_smart_control():
         dict_form["date"] = tstr
         
         # detect data
-        is_file = os.path.isfile(data_path)
         if(is_file):
-            df_form = pd.read_csv(data_path, index_col=0)
             df_form = df_form.append(dict_form, ignore_index=True)
         else:
             # pprint.pprint(dict_form)
@@ -55,8 +72,13 @@ def servomotor_smart_control():
         df_form.to_csv(data_path)
         pprint.pprint(df_form)
         
-    else:
-        df_form = pd.DataFrame({})
+        # --------
+        # servo cont
+        #
+        degree = int(dict_form["degree"])
+        Servo0.SetPos(degree)
+        
+        
     
     # --------------------------------------------
     # convert df to dict

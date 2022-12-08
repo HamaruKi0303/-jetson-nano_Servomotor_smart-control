@@ -19,6 +19,7 @@ class ServoClass:
         #PCA9685はパルスで角度を制御しており、パルス150~650が角度0~180に対応
         pulse = int((650-150)/180*pos+150+self.ZeroOffset)
         self.pwm.set_pwm(self.Channel, 0, pulse)
+        logger.info("deg : {}".format(pos))
 
     # pulse 設定
     def SetPulse(self, pulse):
