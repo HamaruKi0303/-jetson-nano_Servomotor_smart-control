@@ -1,10 +1,13 @@
 # Jetson-nano-Servomotor on Docker-compose
 
+![](docs/IMG_0201.jpg)
+
 # Index
 
 - [Introduction](#introduction)
 - [Updates!!](#updates)
 - [Coming soon](#coming-soon)
+- [Equipment](#equipment)
 - [Quick Start](#quick-start)
   - [Dockerfile](#dockerfile)
   - [Docker-compose.yml](#docker-composeyml)
@@ -14,7 +17,6 @@
     - [デバイスの確認．](#デバイスの確認)
     - [サンプルプログラム](#サンプルプログラム)
 - [Reference site](#reference-site)
-- [Memo](#memo)
 
 ## Introduction
 
@@ -28,6 +30,14 @@
 
 ## Coming soon
 - [ ] 現状特になし
+
+## Equipment
+
+- [NVIDIA Jetson Nano 2GB](https://www.amazon.co.jp/NVIDIA-Jetson-Nano-2GB-%E3%83%87%E3%83%99%E3%83%AD%E3%83%83%E3%83%91%E3%83%BC%E3%82%AD%E3%83%83%E3%83%88/dp/B08J157LHH/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=8HVIOUSSXKOV&keywords=jetson+nano+2gb&qid=1670466285&s=computers&sprefix=jetson+nano+2gb%2Ccomputers%2C297&sr=1-1)
+- [ACアダプター 45W USB-C](https://www.amazon.co.jp/gp/product/B0B4BC2V34/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1)
+- [フルメタルギアデジタルサーボ 7.4V](https://www.amazon.co.jp/gp/product/B07KK66Z7J/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1)
+- [モーター ドライバー PCA9685](https://www.amazon.co.jp/gp/product/B07SLRG5J1/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1)
+  
 
 ## Quick Start
 
@@ -294,11 +304,6 @@ while True:
 - [Jetson Xavier NXでJetRacerを構築](https://qiita.com/akira-sasaki/items/015525fb3f0079b14dbf)
 - [JetPack Archive](https://developer.nvidia.com/embedded/jetpack-archive)
 - [DockerコンテナからRaspberryPiのGPIO・I2C・シリアル通信を使う](https://qiita.com/myasu/items/e3bf8641a9e94dd3e5dd)
-- 
 
 
-
-## Memo
-
-sudo service docker restart
 

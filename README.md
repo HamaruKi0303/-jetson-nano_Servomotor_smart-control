@@ -1,20 +1,22 @@
 # Jetson-nano-Servomotor on Docker-compose
 
+![](docs/IMG_0201.jpg)
+
 # Index
 
 - [1. Introduction](#1-introduction)
 - [2. Updates!!](#2-updates)
 - [3. Coming soon](#3-coming-soon)
-- [4. Quick Start](#4-quick-start)
-  - [Dockerfile](#dockerfile)
-  - [Docker-compose.yml](#docker-composeyml)
-- [5. サーボモーターサンプルプログラム](#5-サーボモーターサンプルプログラム)
-  - [5.1. 初期化](#51-初期化)
-  - [5.2. 動作確認](#52-動作確認)
-    - [5.2.1. デバイスの確認．](#521-デバイスの確認)
-    - [5.2.2. サンプルプログラム](#522-サンプルプログラム)
-- [6. Reference site](#6-reference-site)
-- [7. Memo](#7-memo)
+- [4. Equipment](#4-equipment)
+- [5. Quick Start](#5-quick-start)
+  - [5.1. Dockerfile](#51-dockerfile)
+  - [5.2. Docker-compose.yml](#52-docker-composeyml)
+- [6. サーボモーターサンプルプログラム](#6-サーボモーターサンプルプログラム)
+  - [6.1. 初期化](#61-初期化)
+  - [6.2. 動作確認](#62-動作確認)
+    - [6.2.1. デバイスの確認．](#621-デバイスの確認)
+    - [6.2.2. サンプルプログラム](#622-サンプルプログラム)
+- [7. Reference site](#7-reference-site)
 
 ## 1. Introduction
 
@@ -29,7 +31,15 @@
 ## 3. Coming soon
 - [ ] 現状特になし
 
-## 4. Quick Start
+## 4. Equipment
+
+- [NVIDIA Jetson Nano 2GB](https://www.amazon.co.jp/NVIDIA-Jetson-Nano-2GB-%E3%83%87%E3%83%99%E3%83%AD%E3%83%83%E3%83%91%E3%83%BC%E3%82%AD%E3%83%83%E3%83%88/dp/B08J157LHH/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=8HVIOUSSXKOV&keywords=jetson+nano+2gb&qid=1670466285&s=computers&sprefix=jetson+nano+2gb%2Ccomputers%2C297&sr=1-1)
+- [ACアダプター 45W USB-C](https://www.amazon.co.jp/gp/product/B0B4BC2V34/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1)
+- [フルメタルギアデジタルサーボ 7.4V](https://www.amazon.co.jp/gp/product/B07KK66Z7J/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1)
+- [モーター ドライバー PCA9685](https://www.amazon.co.jp/gp/product/B07SLRG5J1/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1)
+  
+
+## 5. Quick Start
 
 `docker-compose`を起動します．
 
@@ -37,7 +47,7 @@
 sudo docker-compose up -d
 ```
 
-### Dockerfile
+### 5.1. Dockerfile
 
 [NVIDIA Deep Learning Institute (DLI) ](https://www.nvidia.com/ja-jp/training/)のイメージを元に作成します．
 
@@ -52,7 +62,7 @@ RUN apt-get update
 RUN apt-get install i2c-tools
 ```
 
-### Docker-compose.yml
+### 5.2. Docker-compose.yml
 
 ```Dockerfile
 version: '3'
@@ -87,7 +97,7 @@ services:
     # working_dir: /home
 ```
 
-## 5. サーボモーターサンプルプログラム
+## 6. サーボモーターサンプルプログラム
 
 下記のNOTEBOOKを利用して動かすことができます．
 
@@ -97,7 +107,7 @@ services:
 下記のリンクから`notebook`にアクセスします．
 >http://maki-jetson2:8888/
 
-### 5.1. 初期化
+### 6.1. 初期化
 
 Docker 内で作られたファイルは`root`権限になってしまう．そうすると`VSCode`で編集できないため，ここで権限を緩める．
 
@@ -126,9 +136,9 @@ Docker 内で作られたファイルは`root`権限になってしまう．そ�
     /home/jetson-nano-servomotor
 ```
 
-### 5.2. 動作確認
+### 6.2. 動作確認
 
-#### 5.2.1. デバイスの確認．
+#### 6.2.1. デバイスの確認．
 
 ここで`i2c`関係のものが無ければマウントする必要がある．
 
@@ -226,7 +236,7 @@ Docker 内で作られたファイルは`root`権限になってしまう．そ�
     70: 70 -- -- -- -- -- -- --                         
 ```
 
-#### 5.2.2. サンプルプログラム
+#### 6.2.2. サンプルプログラム
 
 こちらを実行すると動作するはず．
 
@@ -289,16 +299,11 @@ while True:
 
 
 
-## 6. Reference site
+## 7. Reference site
 
 - [Jetson Xavier NXでJetRacerを構築](https://qiita.com/akira-sasaki/items/015525fb3f0079b14dbf)
 - [JetPack Archive](https://developer.nvidia.com/embedded/jetpack-archive)
 - [DockerコンテナからRaspberryPiのGPIO・I2C・シリアル通信を使う](https://qiita.com/myasu/items/e3bf8641a9e94dd3e5dd)
-- 
 
 
-
-## 7. Memo
-
-sudo service docker restart
 
