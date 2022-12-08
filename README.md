@@ -304,6 +304,8 @@ while True:
 
 ### DEMO動画
 
+👇実際の稼働動画はこちら
+
 https://youtu.be/TDtZmjuElgE
 
 
@@ -377,6 +379,8 @@ root@88d8884ca43a:/home/jetson-nano-servomotor# python3 modules/ServoClass.py
 ```
 
 ### DEMO動画
+
+👇実際の稼働動画はこちら
 
 https://youtu.be/bBPqBWHmJ5Y
 
