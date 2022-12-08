@@ -3,7 +3,7 @@
 # Index
 
 - [Introduction](#introduction)
-- [2. Updates!!](#2-updates)
+- [Updates!!](#updates)
 - [Coming soon](#coming-soon)
 - [Quick Start](#quick-start)
 - [サーボモーターサンプルプログラム](#サーボモーターサンプルプログラム)
@@ -21,7 +21,7 @@
 そこで，`docker-compose`でワンパンで構築できるようにしました．
 
 
-## 2. Updates!!
+## Updates!!
 * 【2022/12/09】README, サンプルプログラムを追加
 
 ## Coming soon
