@@ -1,30 +1,47 @@
-version: '3'
+version: '3.8'
 services:
-  jetson:
+  appseed-app:
+    container_name: jet_servo_smart_app
+    restart: always
     build: .
-
-    # Jupyter Notebook 用のポート
-    ports:
-    - "8888:8888"
+    networks:
+      - db_network
+      - web_network
     volumes:
+      # - .:/home
       # 現在の作業フォルダをマウント
       - ./:/home/jetson-nano-servomotor
       # 現在の作業フォルダをマウント
       - /tmp/argus_socket:/tmp/argus_socket
-
+    # working_dir: /home
+    working_dir: /home/jetson-nano-servomotor
+    tty:  true
     # GPU 関係
     runtime: nvidia
+    ports:
+      - "7777:7777"
+      - "5000:5000"
     devices:
       # WEB カメラ
       - /dev/video0:/dev/video0
-      # - /dev:/dev
-
     # 権限の有効化
     privileged: true
+    # command: python3 run.py
 
-    # コンテナが落ちないように
-    tty: true
-
-    # 起動後のディレクトリ
-    working_dir: /home/jetson-nano-servomotor
-    # working_dir: /home
+  nginx:
+    container_name: nginx
+    restart: always
+    image: "nginx:latest"
+    ports:
+      - "5085:5085"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - web_network
+    depends_on: 
+      - appseed-app
+networks:
+  db_network:
+    driver: bridge
+  web_network:
+    driver: bridge

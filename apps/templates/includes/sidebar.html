@@ -1,0 +1,68 @@
+
+    <div class="sidebar">
+        <!--
+            Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red"
+        -->
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="/" class="simple-text logo-mini">
+                    HK
+                </a>
+                <a href="/" class="simple-text logo-normal">
+                    Hamaru Ki
+                </a>
+            </div>
+            <ul class="nav">
+                <li class="{% if 'index' in segment %} active {% endif %} ">
+                    <a href="/">
+                        <i class="tim-icons icon-chart-pie-36"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+
+                <li class="{% if 'map' in segment %} active {% endif %}">
+                    <a href="/sample_app1">
+                        <i class="tim-icons icon-spaceship"></i>
+                        <p>Sample1</p>
+                    </a>
+                </li>
+                <li class="{% if 'map' in segment %} active {% endif %}">
+                    <a href="/sample_app2">
+                        <i class="tim-icons icon-spaceship"></i>
+                        <p>Sample2</p>
+                    </a>
+                </li>
+                <li class="{% if 'map' in segment %} active {% endif %}">
+                    <a href="/sample_app3">
+                        <i class="tim-icons icon-spaceship"></i>
+                        <p>Sample3</p>
+                    </a>
+                </li>
+                <li class="{% if 'sample_app4' in segment %} active {% endif %}">
+                    <a href="/sample_app4">
+                        <i class="tim-icons icon-spaceship"></i>
+                        <p>Sample4</p>
+                    </a>
+                </li>
+                <li class="{% if 'sample_app5' in segment %} active {% endif %}">
+                    <a href="/sample_app5">
+                        <i class="tim-icons icon-spaceship"></i>
+                        <p>Sample5</p>
+                    </a>
+                </li>
+                
+                {% if 'master' in running_type  %}
+
+                {% else %}
+                    {% include 'includes/sidebar_develop.html' %}                    
+                {% endif %}
+
+                <li>
+                    <a href="{{ url_for('authentication_blueprint.logout') }}">
+                        <i class="tim-icons icon-button-power"></i>
+                        <p>Logout</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
