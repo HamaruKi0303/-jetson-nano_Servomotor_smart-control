@@ -6,6 +6,8 @@
 - [2. Updates!!](#2-updates)
 - [3. Coming soon](#3-coming-soon)
 - [4. Quick Start](#4-quick-start)
+  - [Dockerfile](#dockerfile)
+  - [Docker-compose.yml](#docker-composeyml)
 - [5. サーボモーターサンプルプログラム](#5-サーボモーターサンプルプログラム)
   - [5.1. 初期化](#51-初期化)
   - [5.2. 動作確認](#52-動作確認)
@@ -33,6 +35,56 @@
 
 ```bash
 sudo docker-compose up -d
+```
+
+### Dockerfile
+
+[NVIDIA Deep Learning Institute (DLI) ](https://www.nvidia.com/ja-jp/training/)のイメージを元に作成します．
+
+
+```Dockerfile
+# NVIDIA Deep Learning Institute (DLI)
+FROM nvcr.io/nvidia/dli/dli-nano-ai:v2.0.1-r32.5.0
+
+RUN apt-get update 
+
+# I2C 関係
+RUN apt-get install i2c-tools
+```
+
+### Docker-compose.yml
+
+```Dockerfile
+version: '3'
+services:
+  jetson:
+    build: .
+
+    # Jupyter Notebook 用のポート
+    ports:
+    - "8888:8888"
+    volumes:
+      # 現在の作業フォルダをマウント
+      - ./:/home/jetson-nano-servomotor
+      # 現在の作業フォルダをマウント
+      - /tmp/argus_socket:/tmp/argus_socket
+
+    # GPU 関係
+    runtime: nvidia
+    devices:
+      # WEB カメラ
+      - /dev/video0:/dev/video0
+      # - /dev:/dev
+
+    # 権限の有効化
+    privileged: true
+
+    # コンテナが落ちないように
+    tty: true
+
+    # 起動後のディレクトリ
+    working_dir: /home/jetson-nano-servomotor
+    # working_dir: /home
 ```
 
 ## 5. サーボモーターサンプルプログラム
