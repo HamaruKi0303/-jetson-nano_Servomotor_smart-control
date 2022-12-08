@@ -8,6 +8,7 @@
 - [Quick Start](#quick-start)
 - [Detail](#detail)
 - [Reference site](#reference-site)
+- [Memo](#memo)
 
 ## Introduction
 
@@ -33,4 +34,13 @@
 
 ## Reference site
 
-- [YOLOX](https://github.com/Megvii-BaseDetection/YOLOX)
+- [Jetson Xavier NXでJetRacerを構築](https://qiita.com/akira-sasaki/items/015525fb3f0079b14dbf)
+- [JetPack Archive](https://developer.nvidia.com/embedded/jetpack-archive)
+
+https://qiita.com/myasu/items/e3bf8641a9e94dd3e5dd
+
+
+## Memo
+
+sudo service docker restart
+

@@ -1,0 +1,23 @@
+version: '3'
+services:
+  jetson:
+    build: .
+    ports:
+    - "8888:8888"
+    volumes:
+      - ./:/home/jetson-nano-servomotor
+      - /tmp/argus_socket:/tmp/argus_socket
+
+    runtime: nvidia
+    devices:
+      - /dev/video0:/dev/video0
+      # - /dev:/dev
+      
+
+    # 権限の有効化
+    privileged: true
+
+    tty: true
+
+    working_dir: /home/jetson-nano-servomotor
+    # working_dir: /home
