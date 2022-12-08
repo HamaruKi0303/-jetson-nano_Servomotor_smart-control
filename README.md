@@ -6,6 +6,7 @@
 - [2. Updates!!](#2-updates)
 - [3. Coming soon](#3-coming-soon)
 - [4. Quick Start](#4-quick-start)
+  - [Dockerfile](#dockerfile)
 - [5. サーボモーターサンプルプログラム](#5-サーボモーターサンプルプログラム)
   - [5.1. 初期化](#51-初期化)
   - [5.2. 動作確認](#52-動作確認)
@@ -33,6 +34,20 @@
 
 ```bash
 sudo docker-compose up -d
+```
+
+### Dockerfile
+
+```Dockerfile
+FROM nvcr.io/nvidia/dli/dli-nano-ai:v2.0.1-r32.5.0
+
+RUN apt-get update 
+RUN apt-get install i2c-tools
+```
+
+
+```Dockerfile
+
 ```
 
 ## 5. サーボモーターサンプルプログラム
