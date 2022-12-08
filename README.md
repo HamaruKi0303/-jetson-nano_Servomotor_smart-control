@@ -16,10 +16,11 @@
   - [6.2. 動作確認](#62-動作確認)
     - [6.2.1. デバイスの確認．](#621-デバイスの確認)
     - [6.2.2. サンプルプログラム](#622-サンプルプログラム)
-    - [デモ動画](#デモ動画)
+  - [DEMO動画](#demo動画)
 - [7. 角度指定プログラム](#7-角度指定プログラム)
   - [7.1. サーボモータークラス](#71-サーボモータークラス)
   - [7.2. 実行画面](#72-実行画面)
+  - [DEMO動画](#demo動画-1)
 - [8. Reference site](#8-reference-site)
 
 ## 1. Introduction
@@ -301,9 +302,10 @@ while True:
     time.sleep(1)
 ```
 
-#### デモ動画
+### DEMO動画
 
-<iframe width="621" height="1104" src="https://www.youtube.com/embed/TDtZmjuElgE" title="Jetson-nano-Servomotor on Docker-compose（DEMO）" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+https://youtu.be/TDtZmjuElgE
+
 
 ## 7. 角度指定プログラム
 
@@ -373,6 +375,10 @@ root@88d8884ca43a:/home/jetson-nano-servomotor# python3 modules/ServoClass.py
 2022-12-08 08:57:47.250 | INFO     | __main__:<module>:47 - deg : 30
 2022-12-08 08:57:47.753 | INFO     | __main__:<module>:47 - deg : 32
 ```
+
+### DEMO動画
+
+https://youtu.be/bBPqBWHmJ5Y
 
 
 ## 8. Reference site
