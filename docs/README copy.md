@@ -16,6 +16,11 @@
   - [動作確認](#動作確認)
     - [デバイスの確認．](#デバイスの確認)
     - [サンプルプログラム](#サンプルプログラム)
+  - [DEMO動画](#demo動画)
+- [角度指定プログラム](#角度指定プログラム)
+  - [サーボモータークラス](#サーボモータークラス)
+  - [実行画面](#実行画面)
+  - [DEMO動画](#demo動画-1)
 - [Reference site](#reference-site)
 
 ## Introduction
@@ -297,6 +302,83 @@ while True:
     time.sleep(1)
 ```
 
+### DEMO動画
+
+https://youtu.be/TDtZmjuElgE
+
+
+## 角度指定プログラム
+
+角度を指定してサーボモーターを動かします．今回は角度を0～180度に変化させるプログラムを紹介します．
+### サーボモータークラス
+
+`modules/ServoClass.py`
+
+```python
+class ServoClass:
+    #ChannelはPCA9685のサーボモータの接続チャンネル
+    #ZeroOffsetはサーボモータの基準位置調節用パラメータ
+    def __init__(self, Channel, ZeroOffset):
+        self.Channel = Channel
+        self.ZeroOffset = ZeroOffset
+
+        #Adafruit_PCA9685の初期化
+        self.pwm = Adafruit_PCA9685.PCA9685()
+        self.pwm.set_pwm_freq(int(60))
+
+    # 角度設定
+    def SetPos(self, pos):
+        #PCA9685はパルスで角度を制御しており、パルス150~650が角度0~180に対応
+        pulse = int((650-150)/180*pos+150+self.ZeroOffset)
+        self.pwm.set_pwm(self.Channel, 0, pulse)
+
+    # pulse 設定
+    def SetPulse(self, pulse):
+        self.pwm.set_pwm(self.Channel, 0, pulse)
+        
+    # 終了処理
+    def Cleanup(self):
+        #サーボを90°にセット
+        # self.SetPos(int(90))
+        self.SetPos(0)
+        logger.info("SetPos 0")
+```
+
+### 実行画面
+
+`script/in_docker.sh`でコンテナの中に入ります．
+
+```bash
+maki@maki-jetson2:~/Documents/jetson-nano-Servomotor$ ./script/in_docker.sh 
+root@88d8884ca43a:/home/jetson-nano-servomotor#
+```
+
+`modules/ServoClass.py`を実行します．
+
+```bash
+root@88d8884ca43a:/home/jetson-nano-servomotor# python3 modules/ServoClass.py 
+2022-12-08 08:57:39.676 | INFO     | __main__:<module>:47 - deg : 0
+2022-12-08 08:57:40.179 | INFO     | __main__:<module>:47 - deg : 2
+2022-12-08 08:57:40.682 | INFO     | __main__:<module>:47 - deg : 4
+2022-12-08 08:57:41.185 | INFO     | __main__:<module>:47 - deg : 6
+2022-12-08 08:57:41.688 | INFO     | __main__:<module>:47 - deg : 8
+2022-12-08 08:57:42.191 | INFO     | __main__:<module>:47 - deg : 10
+2022-12-08 08:57:42.699 | INFO     | __main__:<module>:47 - deg : 12
+2022-12-08 08:57:43.209 | INFO     | __main__:<module>:47 - deg : 14
+2022-12-08 08:57:43.715 | INFO     | __main__:<module>:47 - deg : 16
+2022-12-08 08:57:44.219 | INFO     | __main__:<module>:47 - deg : 18
+2022-12-08 08:57:44.725 | INFO     | __main__:<module>:47 - deg : 20
+2022-12-08 08:57:45.235 | INFO     | __main__:<module>:47 - deg : 22
+2022-12-08 08:57:45.742 | INFO     | __main__:<module>:47 - deg : 24
+2022-12-08 08:57:46.245 | INFO     | __main__:<module>:47 - deg : 26
+2022-12-08 08:57:46.747 | INFO     | __main__:<module>:47 - deg : 28
+2022-12-08 08:57:47.250 | INFO     | __main__:<module>:47 - deg : 30
+2022-12-08 08:57:47.753 | INFO     | __main__:<module>:47 - deg : 32
+```
+
+### DEMO動画
+
+https://youtu.be/bBPqBWHmJ5Y
 
 
 ## Reference site
@@ -304,6 +386,6 @@ while True:
 - [Jetson Xavier NXでJetRacerを構築](https://qiita.com/akira-sasaki/items/015525fb3f0079b14dbf)
 - [JetPack Archive](https://developer.nvidia.com/embedded/jetpack-archive)
 - [DockerコンテナからRaspberryPiのGPIO・I2C・シリアル通信を使う](https://qiita.com/myasu/items/e3bf8641a9e94dd3e5dd)
-
-
+- [Jetson nanoとPCA9685でサーボを動かそうとするときのI2Cエラー対処法！](https://kokensha.xyz/jetson/jetson-nano-pca9685-i2c-error-resolution/)
+- [ラズパイとサーボドライバ(PCA9685)でサーボモータ制御](https://python-academia.com/raspberrypi-pca9685-servo/)
 
