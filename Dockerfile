@@ -5,3 +5,6 @@ RUN apt-get update
 
 # I2C 関係
 RUN apt-get install i2c-tools
+
+# python utils
+RUN pip3 install loguru
