@@ -15,37 +15,24 @@
             <div class="col-md-6 mt-6">
                 <div class="card">
                     <div class="card-header text-center py-4">
-                        <h4 class="title">Post form sample</h4>
+                        <h4 class="title">Degree send form</h4>
                     </div>
-                    <form action="/sample_app3" method="post">
+                    <form action="/servomotor_smart_control" method="post">
                         <div class="card-body px-5 py-3">
                             
                                 <div class="row">
                                     <div class="col-md-12 px-md-1">
                                         <div class="form-group">
-                                            <label>Username</label>
+                                            <label>Degree</label>
                                             <input type="text" 
                                                     class="form-control" 
-                                                    placeholder="Username"
-                                                    id="Username" 
-                                                    name="Username" 
-                                                    value="michael23">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12 px-md-1">
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input type="password" 
-                                                    class="form-control" 
-                                                    placeholder="password"
-                                                    id="Password" 
-                                                    name="Password" 
-                                                    value="example@gmail.com">
+                                                    placeholder="degree"
+                                                    id="degree" 
+                                                    name="degree" 
+                                                    value="30">
                                         </div>
                                     </div>
                                 </div>
-
                             
                         </div>
                         <div class="card-footer text-center">
@@ -62,7 +49,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="card ">
                     <div class="card-header">
-                        <h4 class="card-title"> Simple post Table</h4>
+                        <h4 class="card-title"> Send history</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -73,10 +60,10 @@
                                         ID
                                     </th>
                                     <th>
-                                        Username
+                                        Date
                                     </th>
                                     <th>
-                                        Password
+                                        Degree
                                     </th>
                                 </tr>
                                 </thead>
@@ -87,10 +74,10 @@
                                             {{ loop.index }}
                                         </td>
                                         <td>
-                                            {{ i['Username'] }}
+                                            {{ i['date'] }}
                                         </td>
                                         <td>
-                                            {{ i['Password'] }}
+                                            {{ i['degree'] }}
                                         </td>
                                     </tr>
                                 {% endfor %}
